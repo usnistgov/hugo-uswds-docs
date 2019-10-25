@@ -192,8 +192,6 @@ workflows:
                 - master
                 - nist-pages
       - job-build-and-deploy-website:
-          requires:
-            - job-validate-site-content
           filters:
             branches:
               only: master
