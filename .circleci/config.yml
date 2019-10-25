@@ -144,11 +144,6 @@ jobs: # a collection of
       - install-bundler
       - install-hugo
       - run:
-          name: Restore generated site content
-          command: |
-            # restore docs from tar
-            tar -zxvf "${BUILD_DIR}/docs.tar.gz" --directory "${REPO_WEBSITE_DIR}" --strip-components=2
-      - run:
           name: Build Site with Hugo
           command: |
             # cp -vr "$BUILD_DIR"/* "$REPO_DIR"
@@ -192,6 +187,8 @@ workflows:
                 - master
                 - nist-pages
       - job-build-and-deploy-website:
+          requires:
+            - job-ci-skip-check
           filters:
             branches:
               only: master
