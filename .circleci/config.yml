@@ -114,7 +114,7 @@ jobs: # a collection of
           name: Validate repo Markdown content instances
           command: |
             # this command will filter out any docs Markdown files, which are checked in a different job
-            find "$REPO_DIR" -path "${REPO_DIR}/docs" -prune -o -name \*.md -print0 | xargs -0 -n1 markdown-link-check -q
+            find "$REPO_DIR" -path "${REPO_WEBSITE_DIR}" -prune -o -name \*.md -print0 | xargs -0 -n1 markdown-link-check -q
   job-validate-site-content:
     executor: ruby-node-executor
     steps:
@@ -129,7 +129,7 @@ jobs: # a collection of
           name: Restore generated site content
           command: |
             # restore docs from tar
-            tar -zxvf "${BUILD_DIR}/docs.tar.gz" --directory "${REPO_DIR}/docs" --strip-components=2
+            tar -zxvf "${BUILD_DIR}/docs.tar.gz" --directory "${REPO_WEBSITE_DIR}" --strip-components=2
       - run:
           name: Build and Validate Hugo site
           command: |
@@ -153,7 +153,7 @@ jobs: # a collection of
           name: Restore generated site content
           command: |
             # restore docs from tar
-            tar -zxvf "${BUILD_DIR}/docs.tar.gz" --directory "${REPO_DIR}/docs" --strip-components=2
+            tar -zxvf "${BUILD_DIR}/docs.tar.gz" --directory "${REPO_WEBSITE_DIR}" --strip-components=2
       - run:
           name: Build Site with Hugo
           command: |
