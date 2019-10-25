@@ -9,7 +9,7 @@ assignees: ''
 
 # User Story:
 
-As an OSCAL {stakeholder}, I {provide a clear and concise description of what the problem is. Ex. I need to be able to do}
+As an {stakeholder}, I {provide a clear and concise description of what the problem is. Ex. I need to be able to do}
 
 ## Goals:
 
@@ -21,7 +21,7 @@ As an OSCAL {stakeholder}, I {provide a clear and concise description of what th
 
 ## Acceptance Criteria
 
-- [ ] All [OSCAL website](https://pages.nist.gov/OSCAL) and readme documentation affected by the changes in this issue have been updated. Changes to the OSCAL website can be made in the docs/content directory of your branch.
+- [ ] All documentation affected by the changes in this issue has been updated. Changes to the website can be made in the website/content directory of your branch.
 - [ ] A Pull Request (PR) is submitted that fully addresses the goals of this User Story. This issue is referenced in the PR.
 - [ ] The CI-CD build process runs without any reported errors on the PR. This can be confirmed by reviewing that all checks have passed in the PR.
 
