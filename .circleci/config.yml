@@ -42,11 +42,11 @@ commands:
       - run:
           name: Get Hugo
           command: |
-            wget "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.deb
+            wget "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.deb"
       - run:
           name: Install Hugo
           command: |
-            sudo apt-get install ./hugo_extended_${HUGO_VERSION}_Linux-64bit.deb
+            sudo apt-get install "./hugo_extended_${HUGO_VERSION}_Linux-64bit.deb"
   install-markdown-link-check:
     description: "Install markdown-link-check"
     steps:
