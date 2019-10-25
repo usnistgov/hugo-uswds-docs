@@ -37,7 +37,7 @@ references:
         - git-repo/website/vendor/bundle
 commands:
   install-hugo:
-    description: "Installs Hugo"
+    description: "Install Hugo"
     steps:
       - run:
           name: Get Hugo
@@ -114,7 +114,7 @@ jobs: # a collection of
           name: Validate repo Markdown content instances
           command: |
             # this command will filter out any docs Markdown files, which are checked in a different job
-            find "$REPO_DIR" -path "${REPO_WEBSITE_DIR}" -prune -o -name \*.md -print0 | xargs -0 -n1 markdown-link-check -q
+            find "$REPO_DIR" -path "${REPO_WEBSITE_DIR}" -prune -o -name \*.md -print0 | xargs -0 -n1 markdown-link-check -q -c "$REPO_DIR/.markdown-link-check/config.json"
   job-validate-site-content:
     executor: ruby-node-executor
     steps:
@@ -126,15 +126,9 @@ jobs: # a collection of
       - install-bundler
       - install-hugo
       - run:
-          name: Restore generated site content
-          command: |
-            # restore docs from tar
-            tar -zxvf "${BUILD_DIR}/docs.tar.gz" --directory "${REPO_WEBSITE_DIR}" --strip-components=2
-      - run:
           name: Build and Validate Hugo site
           command: |
-            # cp -vr "$BUILD_DIR"/* "$REPO_DIR"
-            cd "$REPO_DIR/docs"
+            cd "${REPO_WEBSITE_DIR}"
             hugo -v --debug --minify
             bundle exec htmlproofer --allow-hash-href --disable-external  public/ --url-swap "\/OSCAL\/:/"  --assume-extension --log-level :debug
       - *save_gem_cache
